@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>Vue 测试实例 - 菜鸟教程(runoob.com)</title>
+    <script src="vue.min.js"></script>
+</head>
+
+
+<body>
+
+    <div id="vue01">
+
+
+        <h1> site : {{site}}</h1>
+        <h1> url : {{url}}</h1>
+        <h1> {{getDetail()}}</h1>
+        <!-- <button onclick="{{getDetail()}}"> 点我试试 </button> -->
+
+    </div>
+
+
+    <script type="text/javascript">
+        function getDetail() {
+            // vue01.methods.getDetail();
+        };
+
+        var data = {
+            site: "你说啥嘞",
+            url: "http:www.baidu.com",
+        };
+        var vue01 = new Vue({
+
+            el: "#vue01",
+
+            data: data,
+            methods: {
+
+                getDetail: function () {
+                    console.log('这是个方法')
+                    data.site="怎么了嘛";
+                    return "来来来,再次入坑";
+                }
+            }
+        });
+
+
+        vue01.$data.site="jjj";
+        document.write(vue01.$data === data) // true        
+document.write("<br>") 
+document.write(vue01.$el === document.getElementById('vue01')) // true
+
+
+    </script>
+
+
+</body>
+
+
+</html>
