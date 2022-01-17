@@ -30,7 +30,7 @@ export default {
     CommonTag,
   },
   methods: {
-    logicLoginState() {
+    logicLoginState(needPushMain) {
       console.log("spLogin:" + spConstanst.spLogin);
 
       var userToken = localStorage.getItem(spConstanst.spLogin);
@@ -38,15 +38,17 @@ export default {
       console.log("localToken" + userToken);
       if (!userToken) {
         this.$router.push({ name: "login" });
-      } 
+      } else if (needPushMain) {
+        this.$router.push({ name: "home" });
+      }
     },
   },
 
   mounted() {
-    this.logicLoginState();
+    this.logicLoginState(true);
   },
   updated() {
-    this.logicLoginState();
+    this.logicLoginState(false);
   },
 };
 </script>
