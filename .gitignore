@@ -20,10 +20,6 @@ pnpm-debug.log*
 *.njsproj
 *.sln
 *.sw?
-/.history
-*/.history
-**/.history
+
 .history/*
 */.history/*
-**/.history/*
-**/.history/**
