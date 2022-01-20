@@ -23,7 +23,7 @@ pnpm-debug.log*
 /.history
 */.history
 **/.history
-.history/
+.history/*
 */.history/*
 **/.history/*
 **/.history/**
