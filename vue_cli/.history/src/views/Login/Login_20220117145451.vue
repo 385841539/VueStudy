@@ -1,0 +1,39 @@
+<template>
+  <div class="out_login">
+    <div class="login">
+      <el-input placeholder="请输入用户名" v-model="userNmae"></el-input>
+      <el-input
+        placeholder="请输入密码"
+        v-model="userPassword"
+        show-password
+      ></el-input>
+    </div>
+  </div>
+</template>
+
+<script>
+export default {
+  data() {
+    return {
+      userNmae: null,
+      userPassword: null,
+    };
+  },
+};
+</script>
+
+<style lang="scss" scoped>
+.out_login {
+  height: 100vh;
+  background-color: green;
+
+  .login {
+    background-color: hotpink;
+
+    align-self: center;
+
+    width: 300px;
+    padding: 30px;
+  }
+}
+</style>
