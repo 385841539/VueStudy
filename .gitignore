@@ -22,3 +22,8 @@ pnpm-debug.log*
 *.sw?
 /.history
 */.history
+**/.history
+.history/
+*/.history/*
+**/.history/*
+**/.history/**
