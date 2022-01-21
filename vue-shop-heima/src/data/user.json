@@ -1,0 +1,30 @@
+{
+    "data": {
+        "total": 12,
+        "pagenum": 1,
+        "users": [
+            {
+                "id": 500,
+                "role_name": "超级管理员",
+                "username": "admin",
+                "create_time": 1486720211,
+                "mobile": null,
+                "email": "123234421",
+                "mg_state": true
+            },
+            {
+                "id": 725,
+                "role_name": "超级管理员",
+                "username": "4",
+                "create_time": 1642755690,
+                "mobile": null,
+                "email": null,
+                "mg_state": true
+            }
+        ]
+    },
+    "meta": {
+        "msg": "获取管理员列表成功",
+        "status": 200
+    }
+}

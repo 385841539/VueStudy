@@ -1,0 +1,14 @@
+{
+    "data": {
+        "id": 500,
+        "rid": 0,
+        "username": "admin",
+        "mobile": "18866677788",
+        "email": "12346@qq.com",
+        "token": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOjUwMCwicmlkIjowLCJpYXQiOjE2NDI3MzY5MzMsImV4cCI6MTY0MjgyMzMzM30.VfZF8IwnIFyg2E6jGVoWSTgyXS-5gR4A_sIaAdKHbBI"
+    },
+    "meta": {
+        "msg": "登录成功",
+        "status": 200
+    }
+}
