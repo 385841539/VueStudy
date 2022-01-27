@@ -1,5 +1,9 @@
 import Vue from 'vue'
-import { Button, Form, FormItem, Input, Message, Container, Header, Aside, Main, Menu, Submenu, MenuItem, Breadcrumb, BreadcrumbItem, Card, Row, Col, Table, TableColumn, Switch, Tooltip, Pagination } from 'element-ui'
+import {
+    Button, Form, FormItem, Input, Message, Container, Header, Aside, Main, Menu,
+    Submenu, MenuItem, Breadcrumb, BreadcrumbItem, Card, Row, Col, Table, TableColumn,
+    Switch, Tooltip, Pagination, Dialog, Tag, Icon, Tree, Select, Option,Cascader
+} from 'element-ui'
 
 
 
@@ -24,4 +28,12 @@ Vue.use(TableColumn)
 Vue.use(Switch)
 Vue.use(Tooltip)
 Vue.use(Pagination)
+Vue.use(Dialog)
+Vue.use(Tag)
+Vue.use(Icon)
+Vue.use(Tree)
+Vue.use(Select)
+Vue.use(Option)
+Vue.use(Cascader)
+// cascader 级联选择器
 Vue.prototype.$message = Message

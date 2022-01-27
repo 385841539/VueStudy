@@ -2,20 +2,28 @@
     <div>
         <el-breadcrumb separator="/">
             <el-breadcrumb-item :to="{ path: '/' }">首页</el-breadcrumb-item>
-            <el-breadcrumb-item><a href="/">用户管理</a></el-breadcrumb-item>
+            <el-breadcrumb-item>用户管理</el-breadcrumb-item>
             <el-breadcrumb-item>用户列表</el-breadcrumb-item>
         </el-breadcrumb>
         <el-card class="box-card">
             <el-row :gutter="20">
                 <el-col :span="7">
-                    <el-input placeholder="请输入内容">
+                    <el-input
+                        placeholder="请输入内容"
+                        v-model="queryInfo.query"
+                        clearable
+                        @clear="getUserList"
+                    >
                         <el-button
                             slot="append"
+                            @click="getUserList"
                             icon="el-icon-search"
                         ></el-button> </el-input
                 ></el-col>
                 <el-col :span="4">
-                    <el-button type="primary">添加用户</el-button>
+                    <el-button @click="dialogVisible = true" type="primary"
+                        >添加用户</el-button
+                    >
                 </el-col>
             </el-row>
 
@@ -75,12 +83,72 @@
             >
             </el-pagination>
         </el-card>
+
+        <el-dialog
+            title="添加用户"
+            :visible.sync="dialogVisible"
+            width="30%"
+            @close="addDialogClosed"
+        >
+            <!-- 登录表单区域 -->
+            <el-form
+                ref="addFormRef"
+                :model="addForm"
+                x
+                :rules="addFormReules"
+                label-width="70px"
+            >
+                <!-- 用户名 -->
+                <el-form-item prop="username" label="用户名">
+                    <el-input v-model="addForm.username"> </el-input>
+                </el-form-item>
+                <!-- 密码 -->
+                <el-form-item prop="password" label="密码">
+                    <el-input type="password" v-model="addForm.password">
+                    </el-input>
+                </el-form-item>
+
+                <!-- 邮箱 -->
+                <el-form-item prop="email" label="邮箱">
+                    <el-input v-model="addForm.email"> </el-input>
+                </el-form-item>
+
+                <!-- 手机 -->
+                <el-form-item prop="mobile" label="手机">
+                    <el-input v-model="addForm.mobile"> </el-input>
+                </el-form-item>
+            </el-form>
+
+            <span slot="footer" class="dialog-footer">
+                <el-button @click="dialogVisible = false">取 消</el-button>
+                <el-button type="primary" @click="addUser">确 定</el-button>
+            </span>
+        </el-dialog>
     </div>
 </template>
 
 <script>
 export default {
     data() {
+        var checkEmail = (rule, value, cb) => {
+            var emailreg = /^\w{3,}(\.\w+)*@[A-z 0-9]+(\.[A-z]{2,5}){1,2}$/
+
+            if (emailreg.test(value)) {
+                return cb()
+            }
+
+            cb(new Error('请输入合法的邮箱'))
+        }
+        var checkMobile = (rule, value, cb) => {
+            let phonereg = /^[1][3,4,5,6,7,8][0-9]{9}$/
+
+            if (phonereg.test(value)) {
+                return cb()
+            }
+
+            cb(new Error('请输入合法手机号'))
+        }
+        //   var checkMobile=(rule,value,cb)=> {},
         return {
             queryInfo: {
                 query: '',
@@ -88,14 +156,91 @@ export default {
                 pagesize: 2,
             },
 
+            dialogVisible: false,
             userlist: [],
             total: 0,
+            addForm: {
+                username: '',
+                password: '',
+                email: '',
+                mobile: '',
+            },
+
+            addFormReules: {
+                username: [
+                    {
+                        required: true,
+                        message: '请输入用户名',
+                        trigger: 'blur',
+                    },
+                    {
+                        min: 3,
+                        max: 10,
+                        message: '长度不符,3-10',
+                        trigger: 'blur',
+                    },
+                ],
+                password: [
+                    {
+                        required: true,
+                        message: '请输入密码',
+                        trigger: 'blur',
+                    },
+                    {
+                        min: 6,
+                        max: 15,
+                        message: '长度不符6-15',
+                        trigger: 'blur',
+                    },
+                ],
+                email: [
+                    {
+                        required: true,
+                        message: '请输入邮箱',
+                        trigger: 'blur',
+                    },
+                    {
+                        validator: checkEmail,
+
+                        trigger: 'blur',
+                    },
+                ],
+                mobile: [
+                    {
+                        required: true,
+                        message: '请输入手机号',
+                        trigger: 'blur',
+                    },
+                    {
+                        validator: checkMobile,
+
+                        trigger: 'blur',
+                    },
+                ],
+            },
         }
     },
     created() {
         this.getUserList()
     },
     methods: {
+        addUser() {
+            this.$refs.addFormRef.validate(async (valid) => {
+                if (!valid) return
+
+                console.log('0000--')
+                var { data: res } = await this.$http.post('users', this.addForm)
+                if (res.meta.status != 201) {
+                    this.$message.error(res.meta.msg)
+                } else {
+                    this.dialogVisible = false
+                    this.$message.success('添加成功')
+                }
+            })
+        },
+        addDialogClosed() {
+            this.$refs.addFormRef.resetFields()
+        },
         async changeSwitchState(userinfo) {
             console.log(userinfo)
             const { data: res } = await this.$http.put(

@@ -16,6 +16,23 @@ import './assets/fonts/iconfont.css'
 Vue.config.productionTip = false
 Vue.use(less)
 
+// Vue.filter('dateFormat',function(oriVal){
+
+
+//   const dt=new Date(oriVal)
+
+// const y=  dt.getUTCFullYear()
+
+// })
+
+//注册了两个时间格式化过滤器，一个格式化到天，一个格式化到秒
+Vue.filter('dayFormat', function(dataStr, pattern='YYYY-MM-DD'){
+  return moment(dataStr).format(pattern)
+})
+Vue.filter('minFormat', function(dataStr, pattern='YYYY-MM-DD HH:mm:ss'){
+  return moment(dataStr).format(pattern)
+})
+
 
 new Vue({
   router,
