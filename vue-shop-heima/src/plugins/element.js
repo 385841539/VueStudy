@@ -5,7 +5,11 @@ import {
     Switch, Tooltip, Pagination, Dialog, Tag, Icon, Tree, Select, Option,Cascader
 } from 'element-ui'
 
-
+import VueQuillEditor from 'vue-quill-editor'
+// require styles
+import 'quill/dist/quill.core.css'
+import 'quill/dist/quill.snow.css'
+import 'quill/dist/quill.bubble.css'
 
 Vue.use(Button)
 Vue.use(Form)
@@ -35,5 +39,9 @@ Vue.use(Tree)
 Vue.use(Select)
 Vue.use(Option)
 Vue.use(Cascader)
+
+
+// 富文本
+Vue.use(VueQuillEditor)
 // cascader 级联选择器
 Vue.prototype.$message = Message

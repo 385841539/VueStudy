@@ -1,5 +1,7 @@
 import axios from "axios";
 import Vue from "vue";
+//导入
+import NProgress from 'nprogress'
 
 
 
@@ -22,7 +24,7 @@ console.log(host2)
 axios.defaults.baseURL = "https://lianghj.top:8888/api/private/v1/"
 axios.interceptors.request.use(config => {
 
-
+    NProgress.start()
 
 
     var token = localStorage.getItem("token")
@@ -31,6 +33,12 @@ axios.interceptors.request.use(config => {
     // }
     console.log("config---")
     console.log(config)
+    return config
+
+})
+
+axios.interceptors.response.use(config => {
+    NProgress.done()
     return config
 
 })

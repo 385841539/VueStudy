@@ -221,6 +221,8 @@ export default {
         }
     },
     created() {
+        console.log('process.env.NODE_ENV111')
+        console.log(process.env.NODE_ENV)
         this.getUserList()
     },
     methods: {

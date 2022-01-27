@@ -12,5 +12,39 @@ module.exports = {
         //         }
         //     }
         // }
+    },
+    chainWebpack: config => {
+
+        config.when(process.env.NODE_EBV === 'production', config => {
+
+            config.env('app').clear().add('./src/main-prod.js')
+
+            config.set('externals', {
+                vue: 'Vue',
+                'vue-router': 'VueRouter',
+                axios: 'axios',
+                lodash: '_',
+                echarts: 'echarts',
+                nprogress: 'NProgress',
+                'vue-quill-editor': 'VueQuillEditor',
+                jquery: '$'
+            })
+            config.plugin('html').tap(args => {
+                args[0].isProd = true
+                return args
+            })
+
+
+        })
+
+        config.when(process.env.NODE_EBV === 'development', config => {
+
+            config.env('app').clear().add('./src/main-dev.js')
+
+        })
+
     }
+
+
+
 }

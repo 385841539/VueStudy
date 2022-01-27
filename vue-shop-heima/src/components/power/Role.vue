@@ -17,6 +17,9 @@
                 ></el-cascader>
             </div>
 
+            <div>
+                <quill-editor> </quill-editor>
+            </div>
             <el-table :data="rolelist" border stripe>
                 <!-- 展开列 -->
                 <el-table-column type="expand">
@@ -236,7 +239,13 @@ export default {
     display: flex;
     align-items: center;
 }
-.el-cascader{
+.el-cascader {
     margin-left: 15px;
+}
+
+.quill-editor{
+
+margin-top: 10px;
+
 }
 </style>
