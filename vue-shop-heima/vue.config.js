@@ -15,9 +15,9 @@ module.exports = {
     },
     chainWebpack: config => {
 
-        config.when(process.env.NODE_EBV === 'production', config => {
+        config.when(process.env.NODE_ENV === 'production', config => {
 
-            config.env('app').clear().add('./src/main-prod.js')
+            config.entry('app').clear().add('./src/main-prod.js')
 
             config.set('externals', {
                 vue: 'Vue',
@@ -37,9 +37,9 @@ module.exports = {
 
         })
 
-        config.when(process.env.NODE_EBV === 'development', config => {
+        config.when(process.env.NODE_ENV === 'development', config => {
 
-            config.env('app').clear().add('./src/main-dev.js')
+            config.entry('app').clear().add('./src/main-dev.js')
 
         })
 

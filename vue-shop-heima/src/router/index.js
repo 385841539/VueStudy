@@ -65,7 +65,7 @@ const router = new VueRouter({
 
 // 路由导航首位
 router.beforeEach((to, from, next) => {
-  NProgress.start()
+  // NProgress.start()
 
 
   if (to.path === '/login') return next()
@@ -85,7 +85,7 @@ router.beforeEach((to, from, next) => {
 })
 
 router.afterEach(() => {
-  NProgress.done()
+  // NProgress.done()
 })
 
 

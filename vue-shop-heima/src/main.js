@@ -9,6 +9,10 @@ import './plugins/element'
 import './plugins/http'
 //导入字体图标
 import './assets/fonts/iconfont.css'
+
+import 'nprogress/nprogress.css'
+
+
 console.log('process.env.NODE_ENV')
 console.log(process.env.NODE_ENV)
 
