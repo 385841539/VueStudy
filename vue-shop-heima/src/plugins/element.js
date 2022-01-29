@@ -2,7 +2,7 @@ import Vue from 'vue'
 import {
     Button, Form, FormItem, Input, Message, Container, Header, Aside, Main, Menu,
     Submenu, MenuItem, Breadcrumb, BreadcrumbItem, Card, Row, Col, Table, TableColumn,
-    Switch, Tooltip, Pagination, Dialog, Tag, Icon, Tree, Select, Option,Cascader
+    Switch, Tooltip, Pagination, Dialog, Tag, Icon, Tree, Select, Option, Cascader, Scrollbar
 } from 'element-ui'
 
 import VueQuillEditor from 'vue-quill-editor'
@@ -39,6 +39,7 @@ Vue.use(Tree)
 Vue.use(Select)
 Vue.use(Option)
 Vue.use(Cascader)
+Vue.use(Scrollbar)
 
 
 // 富文本

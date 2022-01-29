@@ -20,6 +20,7 @@
             <div>
                 <quill-editor> </quill-editor>
             </div>
+
             <el-table :data="rolelist" border stripe>
                 <!-- 展开列 -->
                 <el-table-column type="expand">
@@ -102,6 +103,19 @@
                     </template>
                 </el-table-column>
             </el-table>
+
+            <div>
+                <!-- <el-scrollbar> -->
+                <div class="hortest">
+                    <div class="item_index" v-for="index in 100" :key="index">
+                        <!-- <div class="inner_div"> -->
+                        <div class="test_div_inner">111</div>
+                        <div class="test_div_inner">222</div>
+                        <!-- </div> -->
+                    </div>
+                </div>
+                <!-- </el-scrollbar> -->
+            </div>
         </el-card>
 
         <el-dialog title="分配权限" :visible.sync="dialogVisible">
@@ -243,9 +257,46 @@ export default {
     margin-left: 15px;
 }
 
-.quill-editor{
+.quill-editor {
+    margin-top: 10px;
+}
 
-margin-top: 10px;
+.el-scrollbar {
+    width: 500px;
+    height: 200px;
+    background-color: red;
+}
 
+.hortest {
+    background-color: aquamarine;
+    display: flex;
+    width: 500px;
+    overflow-x: auto;
+}
+.item_index {
+    background-color: antiquewhite;
+    margin: 10px;
+    align-items: center;
+}
+
+.el-scrollbar__wrap {
+    overflow-x: auto;
+    height: calc(100% + 20px); //多出来的20px是横向滚动条默认的样式
+}
+
+.el-scrollbar .el-scrollbar__wrap .el-scrollbar__view {
+    white-space: nowrap;
+    display: inline-block;
+}
+
+// .inner_div {
+//     display: block;
+// }
+
+.test_div_inner {
+    width: 100px;
+    margin: 10px;
+    background-color: orange;
+    height: 100px;
 }
 </style>
