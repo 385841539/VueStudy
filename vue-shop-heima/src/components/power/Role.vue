@@ -279,15 +279,15 @@ export default {
     align-items: center;
 }
 
-.el-scrollbar__wrap {
-    overflow-x: auto;
-    height: calc(100% + 20px); //多出来的20px是横向滚动条默认的样式
-}
+// .el-scrollbar__wrap {
+//     overflow-x: auto;
+//     height: calc(100% + 20px); //多出来的20px是横向滚动条默认的样式
+// }
 
-.el-scrollbar .el-scrollbar__wrap .el-scrollbar__view {
-    white-space: nowrap;
-    display: inline-block;
-}
+// .el-scrollbar .el-scrollbar__wrap .el-scrollbar__view {
+//     white-space: nowrap;
+//     display: inline-block;
+// }
 
 // .inner_div {
 //     display: block;
