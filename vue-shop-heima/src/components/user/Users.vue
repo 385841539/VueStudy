@@ -94,7 +94,6 @@
             <el-form
                 ref="addFormRef"
                 :model="addForm"
-                x
                 :rules="addFormReules"
                 label-width="70px"
             >

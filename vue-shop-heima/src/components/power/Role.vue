@@ -104,6 +104,19 @@
                 </el-table-column>
             </el-table>
 
+            <div><importExcel @getResult="getMyExcelData" /></div>
+            <div class="exportExcel">
+                <el-button size="middle" type="primary"
+                    ><a href="./file/freight_temp.xlsx" download="运费模板.xlsx"
+                        >下载运费模板</a
+                    ></el-button
+                >
+            </div>
+            <el-button round
+                ><a href="./file/freight_temp.xlsx" download="运费模板.xlsx"
+                    >报名参赛</a
+                >
+            </el-button>
             <div>
                 <!-- <el-scrollbar> -->
                 <div class="hortest">
@@ -139,6 +152,11 @@
 
 <script>
 import data from '../../data/mock/cascaderData.js'
+import importExcel from './importExcel.vue'
+import exportExcel from './exportExcel.vue'
+// import ll from '../../../public/assets/运费模板.xlsx'
+
+// import sss from '运费模板.xlsx'
 export default {
     data() {
         return {
@@ -154,10 +172,95 @@ export default {
             },
             value: [],
             options: data.options,
+            tempExcelKeySet: {
+                运费模板: 'temp_name',
+                承运商: 'shop_name',
+                仓库: 'house_name',
+                区域: 'where_name_str',
+                '首重运费（*）': 'first_weight_price',
+                '续重运费（*）': 'continue_weight_price',
+                首重运费减免: 'first_weight_price_off',
+                续重运费减免: 'continue_weight_price_off',
+            },
         }
     },
-
+    components: {
+        importExcel,
+        exportExcel,
+    },
     methods: {
+        downloadMater() {},
+        getMyExcelData(data, name) {
+            var tempExcelList = []
+
+            // data 为读取的excel数据，在这里进行处理该数据
+            console.log('data--excel---name--')
+            console.log(data.length)
+            console.log(data[0])
+            console.log(JSON.stringify(data[0]))
+            console.log(name)
+
+            if (data) {
+                data.forEach((item, i) => {
+                    var tempParse = {}
+                    for (var key in item) {
+                        for (var tempKey in this.tempExcelKeySet) {
+                            if (key.indexOf(tempKey) !== -1) {
+                                tempParse[this.tempExcelKeySet[tempKey]] =
+                                    item[key]
+                            }
+                        }
+                    }
+                    ///校验 数据有无问题
+
+                    console.log(tempParse['first_weight_price'])
+                    console.log(tempParse['first_weight_price'] > 0)
+                    if (
+                        tempParse['first_weight_price'] > 0 &&
+                        tempParse['continue_weight_price'] > 0 &&
+                        tempParse['first_weight_price_off'] > 0 &&
+                        tempParse['continue_weight_price_off'] > 0
+                    ) {
+                        tempParse['temp_local_success'] = true
+                    } else {
+                        tempParse['temp_local_success'] = false
+                    }
+                    tempExcelList.push(tempParse)
+                    console.log(tempParse)
+                    ///拿到  来的数据， 展示出来
+
+                    ///遍历 item
+
+                    //           var lll = {
+                    //     '运费模板名称（*）': '上海模板',
+                    //     '承运商（*）': '京东',
+                    //     '仓库（*）': '上海',
+                    //     '区域（*）': '南京',
+                    //     '首重运费（*）': 1,
+                    //     '续重运费（*）': 2,
+                    //     '首重运费减免（*）': 11,
+                    //     '续重运费减免（*）': 22,
+                    // }
+
+                    //    var lllll=      {
+                    //       id: '5934',
+                    //       shop_name: '顺丰1',
+                    //       where_name: ['江苏'],
+                    //       house_name: '上海仓',
+                    //       temp_name: '零时',
+                    //       update_time: '2022-11-2',
+                    //       first_weight_price: '10',
+                    //       continue_weight_price: '101',
+                    //       first_weight_price_off: '1012',
+                    //       continue_weight_price_off: '1012',
+                    //     },
+                    ///检验合法性
+                })
+
+                // console.log('tempExcelList----')
+                // console.log(tempExcelList)
+            }
+        },
         addRole() {},
         handleChange(value) {
             console.log(value)
@@ -298,5 +401,13 @@ export default {
     margin: 10px;
     background-color: orange;
     height: 100px;
+}
+.exportExcel {
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+a {
+    color: white;
+    text-decoration: none;
 }
 </style>
